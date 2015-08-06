@@ -18,7 +18,7 @@
 if (!class_exists('Google_Client')) {
   require_once dirname(__FILE__) . '/autoload.php';
 }
-
+ 
 /**
  * The Google API Client
  * http://code.google.com/p/google-api-php-client/
