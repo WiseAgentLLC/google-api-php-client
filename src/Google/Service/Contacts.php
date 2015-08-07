@@ -38,8 +38,8 @@ class Google_Service_Contacts extends Google_Service
         "https://www.googleapis.com/auth/contacts.readonly";
 
     public $contacts;
-    public $contactPhoto;
-    public $contactGroups;
+    public $photos;
+    public $groups;
 
 
     /**
@@ -55,10 +55,10 @@ class Google_Service_Contacts extends Google_Service
         $this->version = 'v3';
         $this->serviceName = 'contacts';
 
-        $this->contactList = new Google_Service_Contacts_ContactList_Resource(
+        $this->contacts = new Google_Service_Contacts_Contacts_Resource(
             $this,
             $this->serviceName,
-            'contactList',
+            'contacts',
             array(
                 'methods' => array(
                     'delete' => array(
@@ -148,10 +148,10 @@ class Google_Service_Contacts extends Google_Service
                 )
             )
         );
-        $this->contactPhotos = new Google_Service_Contacts_ContactPhotos_Resource(
+        $this->photos = new Google_Service_Contacts_Photos_Resource(
             $this,
             $this->serviceName,
-            'contactPhotos',
+            'photos',
             array(
                 'methods' => array(
                     'get' => array(
@@ -188,10 +188,10 @@ class Google_Service_Contacts extends Google_Service
                 )
             )
         );
-        $this->contactGroups = new Google_Service_Contacts_ContactGroups_Resource(
+        $this->groups = new Google_Service_Contacts_Groups_Resource(
             $this,
             $this->serviceName,
-            'contactGroups',
+            'groups',
             array(
                 'methods' => array(
                     'delete' => array(
@@ -289,7 +289,7 @@ class Google_Service_Contacts extends Google_Service
  *   $contacts = $contactService->contacts;
  *  </code>
  */
-class Google_Service_Contacts_ContactList_Resource extends Google_Service_Resource
+class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
 {
 
     /**
@@ -305,7 +305,7 @@ class Google_Service_Contacts_ContactList_Resource extends Google_Service_Resour
     }
 
     /**
-     * Returns a contact. (contact.get)
+     * Returns a contact. (contacts.get)
      *
      * @param string $contactId Contact identifier.
      *
@@ -333,9 +333,8 @@ class Google_Service_Contacts_ContactList_Resource extends Google_Service_Resour
     }
 
     /**
-     * Returns events on the specified calendar. (events.listEvents)
+     * Returns all contacts. (contacts.list)
      *
-     * @param string $calendarId Calendar identifier.
      * @param array $optParams Optional parameters.
      *
      * @opt_param string alt The type of feed to return, such as atom (the default), rss, or json.
@@ -406,107 +405,174 @@ class Google_Service_Contacts_ContactList_Resource extends Google_Service_Resour
 }
 
 /**
- * The "freebusy" collection of methods.
+ * The "photos" collection of methods.
  * Typical usage is:
  *  <code>
- *   $calendarService = new Google_Service_Calendar(...);
- *   $freebusy = $calendarService->freebusy;
+ *   $contactService = new Google_Service_Contacts(...);
+ *   $photos = $contactService->photos;
  *  </code>
  */
-class Google_Service_Calendar_Freebusy_Resource extends Google_Service_Resource
+class Google_Service_Contacts_Photos_Resource extends Google_Service_Resource
 {
 
     /**
-     * Returns free/busy information for a set of calendars. (freebusy.query)
+     * Returns a contact photo. (photos.get)
      *
-     * @param Google_FreeBusyRequest $postBody
-     * @param array $optParams Optional parameters.
-     * @return Google_Service_Calendar_FreeBusyResponse
+     * @param string $contactId Contact identifier.
+     *
+     * @return Google_Service_Contacts_Photo
+     *
      */
-    public function query(Google_Service_Calendar_FreeBusyRequest $postBody, $optParams = array())
+    public function get($contactId)
     {
-        $params = array('postBody' => $postBody);
-        $params = array_merge($params, $optParams);
-        return $this->call('query', array($params), "Google_Service_Calendar_FreeBusyResponse");
+        $params = array('contactId' => $contactId);
+        return $this->call('get', array($params), "Google_Service_Contacts_Photo");
+    }
+
+    /**
+     * Updates a contact photo. (photos.update)
+     *
+     * @param string $contactId Contact identifier.
+     * @param Google_Photo $postBody
+     *
+     * @return Google_Service_Contacts_Photo
+     */
+    public function update($contactId, Google_Service_Contacts_Photo $postBody)
+    {
+        $params = array('contactId' => $contactId, 'postBody' => $postBody);
+        return $this->call('update', array($params), "Google_Service_Contacts_Photo");
+    }
+
+    /**
+     * Deletes a contact photo. (photos.delete)
+     *
+     * @param string $contactId Contact identifier.
+     *
+     */
+    public function delete($contactId)
+    {
+        $params = array('contactId' => $contactId);
+        return $this->call('delete', array($params));
     }
 }
 
 /**
- * The "settings" collection of methods.
+ * The "groups" collection of methods.
  * Typical usage is:
  *  <code>
- *   $calendarService = new Google_Service_Calendar(...);
- *   $settings = $calendarService->settings;
+ *   $contactService = new Google_Service_Contacts(...);
+ *   $groups = $contactService->groups;
  *  </code>
  */
-class Google_Service_Calendar_Settings_Resource extends Google_Service_Resource
+class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
 {
-
     /**
-     * Returns a single user setting. (settings.get)
+     * Deletes a group. (groups.delete)
      *
-     * @param string $setting The id of the user setting.
-     * @param array $optParams Optional parameters.
-     * @return Google_Service_Calendar_Setting
+     * @param string $groupId Group identifier.
+     *
      */
-    public function get($setting, $optParams = array())
+    public function delete($groupId)
     {
-        $params = array('setting' => $setting);
-        $params = array_merge($params, $optParams);
-        return $this->call('get', array($params), "Google_Service_Calendar_Setting");
+        $params = array('groupId' => $groupId);
+        return $this->call('delete', array($params));
     }
 
     /**
-     * Returns all user settings for the authenticated user. (settings.listSettings)
+     * Returns a group. (groups.get)
      *
-     * @param array $optParams Optional parameters.
+     * @param string $groupId Group identifier.
      *
-     * @opt_param string pageToken Token specifying which result page to return.
-     * Optional.
-     * @opt_param int maxResults Maximum number of entries returned on one result
-     * page. By default the value is 100 entries. The page size can never be larger
-     * than 250 entries. Optional.
-     * @opt_param string syncToken Token obtained from the nextSyncToken field
-     * returned on the last page of results from the previous list request. It makes
-     * the result of this list request contain only entries that have changed since
-     * then. If the syncToken expires, the server will respond with a 410 GONE
-     * response code and the client should clear its storage and perform a full
-     * synchronization without any syncToken. Learn more about incremental
-     * synchronization. Optional. The default is to return all entries.
-     * @return Google_Service_Calendar_Settings
+     * @return Google_Service_Contacts_Group
+     *
      */
-    public function listSettings($optParams = array())
+    public function get($groupId)
     {
-        $params = array();
-        $params = array_merge($params, $optParams);
-        return $this->call('list', array($params), "Google_Service_Calendar_Settings");
+        $params = array('groupId' => $groupId);
+        return $this->call('get', array($params), "Google_Service_Contacts_Group");
     }
 
     /**
-     * Watch for changes to Settings resources. (settings.watch)
+     * Creates a group. (groups.insert)
      *
-     * @param Google_Channel $postBody
-     * @param array $optParams Optional parameters.
+     * @param Google_Group $postBody
      *
-     * @opt_param string pageToken Token specifying which result page to return.
-     * Optional.
-     * @opt_param int maxResults Maximum number of entries returned on one result
-     * page. By default the value is 100 entries. The page size can never be larger
-     * than 250 entries. Optional.
-     * @opt_param string syncToken Token obtained from the nextSyncToken field
-     * returned on the last page of results from the previous list request. It makes
-     * the result of this list request contain only entries that have changed since
-     * then. If the syncToken expires, the server will respond with a 410 GONE
-     * response code and the client should clear its storage and perform a full
-     * synchronization without any syncToken. Learn more about incremental
-     * synchronization. Optional. The default is to return all entries.
-     * @return Google_Service_Calendar_Channel
+     * @return Google_Service_Contacts_Group
+     *
      */
-    public function watch(Google_Service_Calendar_Channel $postBody, $optParams = array())
+    public function insert(Google_Service_Contacts_Group $postBody)
     {
         $params = array('postBody' => $postBody);
-        $params = array_merge($params, $optParams);
-        return $this->call('watch', array($params), "Google_Service_Calendar_Channel");
+        return $this->call('insert', array($params), "Google_Service_Contacts_Group");
+    }
+
+    /**
+     * Returns all groups. (groups.list)
+     *
+     * @param array $optParams Optional parameters.
+     *
+     * @opt_param string alt The type of feed to return, such as atom (the default), rss, or json.
+     * Optional. The default value is atom.
+     * @opt_param string q Fulltext query on contacts data fields. The API currently supports simple
+     * search queries such as q=term1 term2 term3 and exact search queries such as q="term1 term2 term3".
+     * Optional.
+     * @opt_param integer max-results The maximum number of entries to return. If you want to receive
+     * all of the contacts, rather than only the default maximum, you can specify a very large number
+     * for max-results. Optional.
+     * @opt_param integer max-results The 1-based index of the first result to be retrieved (for paging).
+     * Optional.
+     * @opt_param string updated-min The lower bound on entry update dates. Optional.
+     * @opt_param string orderby Sorting criterion. The only supported value is lastmodified.
+     * Optional. The default is an unspecified, stable order.
+     * @opt_param boolean showdeleted Include deleted contacts in the returned contacts feed.
+     * Deleted contacts are shown as entries that contain nothing but an <atom:id> element and a
+     * <gd:deleted> element. (Google usually retains placeholders for deleted contacts for 30 days
+     * after deletion; during that time, you can request the placeholders using the showdeleted query
+     * parameter.) Valid values are true or false. When the server decides it cannot guarantee that it
+     * still has information about all deleted contacts pertinent to the query, then it's behavior depends
+     * on the value of the requirealldeleted query parameter. Optional. The default is False.
+     * @opt_param boolean requirealldeleted Only relevant if showdeleted and updated-min are also provided.
+     * It dictates the behavior of the server in case it detects that placeholders of some entries deleted
+     * since the point in time specified as updated-min may have been lost. If requirealldeleted is false,
+     * the server simply returns all the placeholders it still knows about. If true, the server returns the
+     * 410 HTTP response code. Optional. The default value is false.
+     * @opt_param string sortorder Sorting order direction. Can be either ascending or descending.
+     * Optional.
+     *
+     * @return Google_Service_Contacts_Groups
+     *
+     */
+    public function listGroups($optParams = array())
+    {
+        $params = $optParams;
+        return $this->call('list', array($params), "Google_Service_Contacts_Groups");
+    }
+
+    /**
+     * Updates a group. (groups.update)
+     *
+     * @param string $groupId Contact identifier.
+     * @param Google_Groups $postBody
+     *
+     * @return Google_Service_Contacts_Group
+     */
+    public function update($groupId, Google_Service_Contacts_Group $postBody)
+    {
+        $params = array('groupId' => $groupId, 'postBody' => $postBody);
+        return $this->call('update', array($params), "Google_Service_Contacts_Group");
+    }
+
+    /**
+     * Performs batch operations on groups. (groups.batch)
+     *
+     * @param Google_Groups $postBody
+     *
+     * @return Google_Service_Contacts_Groups
+     */
+    public function batch(Google_Service_Contacts_Groups $postBody)
+    {
+        $params = array('postBody' => $postBody);
+        return $this->call('batch', array($params), "Google_Service_Contacts_Groups");
     }
 }
 
