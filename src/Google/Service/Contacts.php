@@ -205,7 +205,7 @@ class Google_Service_Contacts extends Google_Service
                             ),
                         ),
                     ), 'get' => array(
-                        'path' => 'default/full/{groupId}',
+                        'path' => 'groups/default/full/{groupId}',
                         'httpMethod' => 'GET',
                         'parameters' => array(
                             'groupId' => array(
@@ -327,7 +327,7 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      * @return Google_Service_Contacts_Response
      *
      */
-    public function insert(Google_Service_Contacts_Contact $postBody, $optParams = array())
+    public function insert(Google_Service_Contacts_Entry $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
         $params = array_merge($params, $optParams);
@@ -386,7 +386,7 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      *
      * @return Google_Service_Contacts_Response
      */
-    public function update($contactId, Google_Service_Contacts_Contact $postBody, $optParams = array())
+    public function update($contactId, Google_Service_Contacts_Entry $postBody, $optParams = array())
     {
         $params = array('contactId' => $contactId, 'postBody' => $postBody);
         $params = array_merge($params, $optParams);
@@ -400,7 +400,7 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      *
      * @return Google_Service_Contacts_Response
      */
-    public function batch(Google_Service_Contacts_Contacts $postBody, $optParams = array())
+    public function batch(Google_Service_Contacts_Feed $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
         $params = array_merge($params, $optParams);
@@ -424,14 +424,14 @@ class Google_Service_Contacts_Photos_Resource extends Google_Service_Resource
      *
      * @param string $contactId Contact identifier.
      *
-     * @return Google_Service_Contacts_Photo
+     * @return string
      *
      */
     public function get($contactId, $optParams = array())
     {
         $params = array('contactId' => $contactId);
         $params = array_merge($params, $optParams);
-        return $this->call('get', array($params), "Google_Service_Contacts_Photo");
+        return $this->call('get', array($params));
     }
 
     /**
@@ -440,13 +440,13 @@ class Google_Service_Contacts_Photos_Resource extends Google_Service_Resource
      * @param string $contactId Contact identifier.
      * @param Google_Photo $postBody
      *
-     * @return Google_Service_Contacts_Photo
+     * @return string
      */
-    public function update($contactId, Google_Service_Contacts_Photo $postBody, $optParams = array())
+    public function update($contactId, $postBody, $optParams = array())
     {
         $params = array('contactId' => $contactId, 'postBody' => $postBody);
         $params = array_merge($params, $optParams);
-        return $this->call('update', array($params), "Google_Service_Contacts_Photo");
+        return $this->call('update', array($params));
     }
 
     /**
@@ -489,14 +489,14 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      *
      * @param string $groupId Group identifier.
      *
-     * @return Google_Service_Contacts_Group
+     * @return Google_Service_Contacts_Response
      *
      */
     public function get($groupId, $optParams = array())
     {
         $params = array('groupId' => $groupId);
         $params = array_merge($params, $optParams);
-        return $this->call('get', array($params), "Google_Service_Contacts_Group");
+        return $this->call('get', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -504,14 +504,14 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      *
      * @param Google_Group $postBody
      *
-     * @return Google_Service_Contacts_Group
+     * @return Google_Service_Contacts_Response
      *
      */
-    public function insert(Google_Service_Contacts_Group $postBody, $optParams = array())
+    public function insert(Google_Service_Contacts_Entry $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
         $params = array_merge($params, $optParams);
-        return $this->call('insert', array($params), "Google_Service_Contacts_Group");
+        return $this->call('insert', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -547,13 +547,13 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      * @opt_param string sortorder Sorting order direction. Can be either ascending or descending.
      * Optional.
      *
-     * @return Google_Service_Contacts_Groups
+     * @return Google_Service_Contacts_Response
      *
      */
     public function listGroups($optParams = array())
     {
         $params = $optParams;
-        return $this->call('list', array($params), "Google_Service_Contacts_Groups");
+        return $this->call('list', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -562,13 +562,13 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      * @param string $groupId Contact identifier.
      * @param Google_Groups $postBody
      *
-     * @return Google_Service_Contacts_Group
+     * @return Google_Service_Contacts_Response
      */
-    public function update($groupId, Google_Service_Contacts_Group $postBody, $optParams = array())
+    public function update($groupId, Google_Service_Contacts_Entry $postBody, $optParams = array())
     {
         $params = array('groupId' => $groupId, 'postBody' => $postBody);
         $params = array_merge($params, $optParams);
-        return $this->call('update', array($params), "Google_Service_Contacts_Group");
+        return $this->call('update', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -576,13 +576,13 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      *
      * @param Google_Groups $postBody
      *
-     * @return Google_Service_Contacts_Groups
+     * @return Google_Service_Contacts_Response
      */
-    public function batch(Google_Service_Contacts_Groups $postBody, $optParams = array())
+    public function batch(Google_Service_Contacts_Feed $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
         $params = array_merge($params, $optParams);
-        return $this->call('batch', array($params), "Google_Service_Contacts_Groups");
+        return $this->call('batch', array($params), "Google_Service_Contacts_Response");
     }
 }
 
@@ -591,9 +591,9 @@ class Google_Service_Contacts_Response extends Google_Model
     protected $internal_gapi_mappings = array();
     public $version;
     public $encoding;
-    protected $entryType = 'Google_Service_Contacts_Contact';
+    protected $entryType = 'Google_Service_Contacts_Entry';
     protected $entryDataType = '';
-    protected $feedType = 'Google_Service_Contacts_Contacts';
+    protected $feedType = 'Google_Service_Contacts_Feed';
     protected $feedDataType = '';
 
     /**
@@ -663,7 +663,7 @@ class Google_Service_Contacts_Response extends Google_Model
 
 }
 
-class Google_Service_Contacts_Contacts extends Google_Model
+class Google_Service_Contacts_Feed extends Google_Model
 {
     protected $internal_gapi_mappings = array();
     protected $idType = 'Google_Service_Contacts_Value';
@@ -684,7 +684,7 @@ class Google_Service_Contacts_Contacts extends Google_Model
     protected $startIndexDataType = '';
     protected $itemsPerPageType = 'Google_Service_Contacts_Value';
     protected $itemsPerPageDataType = '';
-    protected $entryType = 'Google_Service_Contacts_Contact';
+    protected $entryType = 'Google_Service_Contacts_Entry';
     protected $entryDataType = 'array';
 
     /**
@@ -850,7 +850,7 @@ class Google_Service_Contacts_Contacts extends Google_Model
 
 }
 
-class Google_Service_Contacts_Contact extends Google_Model
+class Google_Service_Contacts_Entry extends Google_Model
 {
     protected $internal_gapi_mappings = array();
     protected $idType = 'Google_Service_Contacts_Value';

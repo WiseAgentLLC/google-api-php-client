@@ -83,11 +83,22 @@ parameters.
 if (isset($authUrl)) {
     echo "<a class='login' href='" . $authUrl . "'>Connect Me!</a>";
 } else {
-    $optParams = array('alt' => 'json','v' => 3);
+    $optParams = array('alt' => 'json','max-results' => 10000, 'v' => 3);
     $result = $service->contacts->listContacts($optParams);
+    echo $client->getAccessToken() . '<br />';
 
     echo "<h3>Results Of Call:</h3>";
-    print_r($result->getFeed());
+    foreach($result->getFeed()->getEntry() as $contact)
+    {
+        echo $contact->getTitle()->getValue() . '<br />';
+    }
+//    $contactUrl = $result->getFeed()->getEntry()[0]->getId()->getValue();
+//    $contactId = substr(strrchr($contactUrl, "/"), 1);
+////    echo $contactId;
+//    $optParams = array('alt' => 'media','v' => 3);
+//    $photoData = $service->photos->get($contactId,$optParams);
+//    $photo = base64_encode($photoData);
+//    echo "<img src= 'data:image/jpeg;base64, $photo' />";
 }
 
 
