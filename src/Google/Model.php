@@ -21,6 +21,7 @@
  * http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5
  *
  */
+
 class Google_Model implements ArrayAccess
 {
   /**
@@ -40,7 +41,8 @@ class Google_Model implements ArrayAccess
   {
     if (func_num_args() == 1 && is_array(func_get_arg(0))) {
       // Initialize the model with the array's contents.
-      $array = func_get_arg(0);
+      // replace weird keys for Contacts service
+      $array = $this->replaceKeys(func_get_arg(0));
       $this->mapTypes($array);
     }
     $this->gapiInit();
@@ -80,6 +82,7 @@ class Google_Model implements ArrayAccess
           $arrayObject[$arrayIndex] =
             $this->createObjectFromName($keyTypeName, $arrayItem);
         }
+
         $this->modelData[$key] = $arrayObject;
       }
       $this->processed[$key] = true;
@@ -108,6 +111,7 @@ class Google_Model implements ArrayAccess
           $this->$camelKey = $val;
       }
     }
+
     $this->modelData = $array;
   }
 
@@ -291,5 +295,23 @@ class Google_Model implements ArrayAccess
   public function __unset($key)
   {
     unset($this->modelData[$key]);
+  }
+
+// Added for Contacts Service
+  public function replaceKeys($array)
+  {
+      $newArray = $array;
+      $trans = array('$batch' => "Batch", '$gd' => "Gd", '$gContact' => "GContact", 'gContact$' => "", 'gd$' => "", '$openSearch' => 'OpenSearch', 'openSearch$' => "", '$t' => "value");
+      foreach ($newArray as $k => $v) {
+          if(is_array($v))
+              $v = $this->replaceKeys($v);
+
+          unset ($newArray[$k]);
+
+          $key = str_replace(array_keys($trans),array_values($trans),$k);
+
+          $newArray[$key] = $v;
+      }
+      return $newArray;
   }
 }

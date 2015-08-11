@@ -39,6 +39,7 @@ class Google_Service_Resource
       'uploadType' => array('type' => 'string', 'location' => 'query'),
       'mediaUpload' => array('type' => 'complex', 'location' => 'query'),
       'prettyPrint' => array('type' => 'string', 'location' => 'query'),
+      'v' => array('type' => 'integer', 'location' => 'query'),
   );
 
   /** @var string $rootUrl */

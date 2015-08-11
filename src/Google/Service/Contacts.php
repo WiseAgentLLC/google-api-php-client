@@ -52,7 +52,7 @@ class Google_Service_Contacts extends Google_Service
         parent::__construct($client);
         $this->rootUrl = 'https://www.google.com/';
         $this->servicePath = 'm8/feeds/';
-        $this->version = 'v3';
+        $this->version = '3.0';
         $this->serviceName = 'contacts';
 
         $this->contacts = new Google_Service_Contacts_Contacts_Resource(
@@ -309,13 +309,14 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      *
      * @param string $contactId Contact identifier.
      *
-     * @return Google_Service_Contacts_Contact
+     * @return Google_Service_Contacts_Response
      *
      */
-    public function get($contactId)
+    public function get($contactId, $optParams = array())
     {
         $params = array('contactId' => $contactId);
-        return $this->call('get', array($params), "Google_Service_Contacts_Contact");
+        $params = array_merge($params, $optParams);
+        return $this->call('get', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -323,13 +324,14 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      *
      * @param Google_Contact $postBody
      *
-     * @return Google_Service_Contacts_Contact
+     * @return Google_Service_Contacts_Response
      *
      */
-    public function insert(Google_Service_Contacts_Contact $postBody)
+    public function insert(Google_Service_Contacts_Contact $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
-        return $this->call('insert', array($params), "Google_Service_Contacts_Contact");
+        $params = array_merge($params, $optParams);
+        return $this->call('insert', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -367,13 +369,13 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      * @opt_param string group Constrains the results to only the contacts belonging to the group specified.
      * Value of this parameter specifies group ID (see also: gContact:groupMembershipInfo). Optional.
      *
-     * @return Google_Service_Contacts_Contacts
+     * @return Google_Service_Contacts_Response
      *
      */
     public function listContacts($optParams = array())
     {
         $params = $optParams;
-        return $this->call('list', array($params), "Google_Service_Contacts_Contacts");
+        return $this->call('list', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -382,12 +384,13 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      * @param string $contactId Contact identifier.
      * @param Google_Contact $postBody
      *
-     * @return Google_Service_Contacts_Contact
+     * @return Google_Service_Contacts_Response
      */
-    public function update($contactId, Google_Service_Contacts_Contact $postBody)
+    public function update($contactId, Google_Service_Contacts_Contact $postBody, $optParams = array())
     {
         $params = array('contactId' => $contactId, 'postBody' => $postBody);
-        return $this->call('update', array($params), "Google_Service_Contacts_Contact");
+        $params = array_merge($params, $optParams);
+        return $this->call('update', array($params), "Google_Service_Contacts_Response");
     }
 
     /**
@@ -395,12 +398,13 @@ class Google_Service_Contacts_Contacts_Resource extends Google_Service_Resource
      *
      * @param Google_Contacts $postBody
      *
-     * @return Google_Service_Contacts_Contacts
+     * @return Google_Service_Contacts_Response
      */
-    public function batch(Google_Service_Contacts_Contacts $postBody)
+    public function batch(Google_Service_Contacts_Contacts $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
-        return $this->call('batch', array($params), "Google_Service_Contacts_Contacts");
+        $params = array_merge($params, $optParams);
+        return $this->call('batch', array($params), "Google_Service_Contacts_Response");
     }
 }
 
@@ -423,9 +427,10 @@ class Google_Service_Contacts_Photos_Resource extends Google_Service_Resource
      * @return Google_Service_Contacts_Photo
      *
      */
-    public function get($contactId)
+    public function get($contactId, $optParams = array())
     {
         $params = array('contactId' => $contactId);
+        $params = array_merge($params, $optParams);
         return $this->call('get', array($params), "Google_Service_Contacts_Photo");
     }
 
@@ -437,9 +442,10 @@ class Google_Service_Contacts_Photos_Resource extends Google_Service_Resource
      *
      * @return Google_Service_Contacts_Photo
      */
-    public function update($contactId, Google_Service_Contacts_Photo $postBody)
+    public function update($contactId, Google_Service_Contacts_Photo $postBody, $optParams = array())
     {
         $params = array('contactId' => $contactId, 'postBody' => $postBody);
+        $params = array_merge($params, $optParams);
         return $this->call('update', array($params), "Google_Service_Contacts_Photo");
     }
 
@@ -486,9 +492,10 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      * @return Google_Service_Contacts_Group
      *
      */
-    public function get($groupId)
+    public function get($groupId, $optParams = array())
     {
         $params = array('groupId' => $groupId);
+        $params = array_merge($params, $optParams);
         return $this->call('get', array($params), "Google_Service_Contacts_Group");
     }
 
@@ -500,9 +507,10 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      * @return Google_Service_Contacts_Group
      *
      */
-    public function insert(Google_Service_Contacts_Group $postBody)
+    public function insert(Google_Service_Contacts_Group $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
+        $params = array_merge($params, $optParams);
         return $this->call('insert', array($params), "Google_Service_Contacts_Group");
     }
 
@@ -556,9 +564,10 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      *
      * @return Google_Service_Contacts_Group
      */
-    public function update($groupId, Google_Service_Contacts_Group $postBody)
+    public function update($groupId, Google_Service_Contacts_Group $postBody, $optParams = array())
     {
         $params = array('groupId' => $groupId, 'postBody' => $postBody);
+        $params = array_merge($params, $optParams);
         return $this->call('update', array($params), "Google_Service_Contacts_Group");
     }
 
@@ -569,11 +578,276 @@ class Google_Service_Contacts_Groups_Resource extends Google_Service_Resource
      *
      * @return Google_Service_Contacts_Groups
      */
-    public function batch(Google_Service_Contacts_Groups $postBody)
+    public function batch(Google_Service_Contacts_Groups $postBody, $optParams = array())
     {
         $params = array('postBody' => $postBody);
+        $params = array_merge($params, $optParams);
         return $this->call('batch', array($params), "Google_Service_Contacts_Groups");
     }
+}
+
+class Google_Service_Contacts_Response extends Google_Model
+{
+    protected $internal_gapi_mappings = array();
+    public $version;
+    public $encoding;
+    protected $entryType = 'Google_Service_Contacts_Contact';
+    protected $entryDataType = '';
+    protected $feedType = 'Google_Service_Contacts_Contacts';
+    protected $feedDataType = '';
+
+    /**
+     * @return mixed
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * @param mixed $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEncoding()
+    {
+        return $this->encoding;
+    }
+
+    /**
+     * @param mixed $encoding
+     */
+    public function setEncoding($encoding)
+    {
+        $this->encoding = $encoding;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntry()
+    {
+        return $this->entry;
+    }
+
+    /**
+     * @param string $entry
+     */
+    public function setEntry($entry)
+    {
+        $this->entry = $entry;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFeed()
+    {
+        return $this->feed;
+    }
+
+    /**
+     * @param string $feed
+     */
+    public function setFeed($feed)
+    {
+        $this->feed = $feed;
+    }
+
+
+}
+
+class Google_Service_Contacts_Contacts extends Google_Model
+{
+    protected $internal_gapi_mappings = array();
+    protected $idType = 'Google_Service_Contacts_Value';
+    protected $idDataType = '';
+    protected $updatedType = 'Google_Service_Contacts_Value';
+    protected $updatedDataType = '';
+    protected $categoryType = 'Google_Service_Contacts_Category';
+    protected $categoryDataType = 'array';
+    protected $titleType = 'Google_Service_Contacts_Value';
+    protected $titleDataType = '';
+    protected $linkType = 'Google_Service_Contacts_Link';
+    protected $linkDataType = 'array';
+    protected $authorType = 'Google_Service_Contacts_Author';
+    protected $authorDataType = 'array';
+    protected $totalResultsType = 'Google_Service_Contacts_Value';
+    protected $totalResultsDataType = '';
+    protected $startIndexType = 'Google_Service_Contacts_Value';
+    protected $startIndexDataType = '';
+    protected $itemsPerPageType = 'Google_Service_Contacts_Value';
+    protected $itemsPerPageDataType = '';
+    protected $entryType = 'Google_Service_Contacts_Contact';
+    protected $entryDataType = 'array';
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param string $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $link
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param string $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTotalResults()
+    {
+        return $this->totalResults;
+    }
+
+    /**
+     * @param string $totalResults
+     */
+    public function setTotalResults($totalResults)
+    {
+        $this->totalResults = $totalResults;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStartIndex()
+    {
+        return $this->startIndex;
+    }
+
+    /**
+     * @param string $startIndex
+     */
+    public function setStartIndex($startIndex)
+    {
+        $this->startIndex = $startIndex;
+    }
+
+    /**
+     * @return string
+     */
+    public function getItemsPerPage()
+    {
+        return $this->itemsPerPage;
+    }
+
+    /**
+     * @param string $itemsPerPage
+     */
+    public function setItemsPerPage($itemsPerPage)
+    {
+        $this->itemsPerPage = $itemsPerPage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntry()
+    {
+        return $this->entry;
+    }
+
+    /**
+     * @param string $entry
+     */
+    public function setEntry($entry)
+    {
+        $this->entry = $entry;
+    }
+
+
 }
 
 class Google_Service_Contacts_Contact extends Google_Model
@@ -594,7 +868,7 @@ class Google_Service_Contacts_Contact extends Google_Model
     protected $linkDataType = 'array';
     protected $nameType = 'Google_Service_Contacts_Name';
     protected $nameDataType = '';
-    protected $nicknameType = 'Google_Service_Contacts_Nickname';
+    protected $nicknameType = 'Google_Service_Contacts_Value';
     protected $nicknameDataType = '';
     protected $birthdayType = 'Google_Service_Contacts_Birthday';
     protected $birthdayDataType = '';
@@ -940,3 +1214,820 @@ class Google_Service_Contacts_Contact extends Google_Model
     }
 }
 
+class Google_Service_Contacts_Value extends Google_Model
+{
+    protected $internal_gapi_mappings = array();
+    public $value;
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+}
+
+class Google_Service_Contacts_Category extends Google_Collection
+{
+    protected $collection_key = 'category';
+    protected $internal_gapi_mappings = array();
+    public $scheme;
+    public $term;
+
+    /**
+     * @return mixed
+     */
+    public function getScheme()
+    {
+        return $this->scheme;
+    }
+
+    /**
+     * @param mixed $scheme
+     */
+    public function setScheme($scheme)
+    {
+        $this->scheme = $scheme;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTerm()
+    {
+        return $this->term;
+    }
+
+    /**
+     * @param mixed $term
+     */
+    public function setTerm($term)
+    {
+        $this->term = $term;
+    }
+}
+
+class Google_Service_Contacts_Link extends Google_Collection
+{
+    protected $collection_key = 'link';
+    protected $internal_gapi_mappings = array();
+    public $rel;
+    public $type;
+    public $href;
+    public $etag;
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHref()
+    {
+        return $this->href;
+    }
+
+    /**
+     * @param mixed $href
+     */
+    public function setHref($href)
+    {
+        $this->href = $href;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * @param mixed $etag
+     */
+    public function setEtag($etag)
+    {
+        $this->etag = $etag;
+    }
+}
+
+class Google_Service_Contacts_Name extends Google_Model
+{
+    protected $internal_gapi_mappings = array();
+    protected $fullNameType = 'Google_Service_Contacts_Value';
+    protected $fullNameDataType = '';
+    protected $givenNameType = 'Google_Service_Contacts_Value';
+    protected $givenNameDataType = '';
+    protected $familyNameType = 'Google_Service_Contacts_Value';
+    protected $familyNameDataType = '';
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param string $fullName
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGivenName()
+    {
+        return $this->givenName;
+    }
+
+    /**
+     * @param string $givenName
+     */
+    public function setGivenName($givenName)
+    {
+        $this->givenName = $givenName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFamilyName()
+    {
+        return $this->familyName;
+    }
+
+    /**
+     * @param string $familyName
+     */
+    public function setFamilyName($familyName)
+    {
+        $this->familyName = $familyName;
+    }
+}
+
+class Google_Service_Contacts_Birthday extends Google_Model
+{
+    protected $internal_gapi_mappings = array();
+    public $when;
+
+    /**
+     * @return mixed
+     */
+    public function getWhen()
+    {
+        return $this->when;
+    }
+
+    /**
+     * @param mixed $when
+     */
+    public function setWhen($when)
+    {
+        $this->when = $when;
+    }
+}
+
+class Google_Service_Contacts_Organization extends Google_Collection
+{
+    protected $collection_key = 'organization';
+    protected $internal_gapi_mappings = array();
+    public $rel;
+    protected $orgNameType = 'Google_Service_Contacts_Value';
+    protected $orgNameDataType = '';
+    protected $orgTitleType = 'Google_Service_Contacts_Value';
+    protected $orgTitleDataType = '';
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrgName()
+    {
+        return $this->orgName;
+    }
+
+    /**
+     * @param string $orgName
+     */
+    public function setOrgName($orgName)
+    {
+        $this->orgName = $orgName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrgTitle()
+    {
+        return $this->orgTitle;
+    }
+
+    /**
+     * @param string $orgTitle
+     */
+    public function setOrgTitle($orgTitle)
+    {
+        $this->orgTitle = $orgTitle;
+    }
+}
+
+class Google_Service_Contacts_Email extends Google_Collection
+{
+    protected $collection_key = 'email';
+    protected $internal_gapi_mappings = array();
+    public $address;
+    public $primary;
+    public $rel;
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
+    }
+
+    /**
+     * @param mixed $primary
+     */
+    public function setPrimary($primary)
+    {
+        $this->primary = $primary;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+}
+
+class Google_Service_Contacts_IM extends Google_Collection
+{
+    protected $collection_key = 'im';
+    protected $internal_gapi_mappings = array();
+    public $address;
+    public $protocol;
+    public $rel;
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProtocol()
+    {
+        return $this->protocol;
+    }
+
+    /**
+     * @param mixed $protocol
+     */
+    public function setProtocol($protocol)
+    {
+        $this->protocol = $protocol;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+}
+
+class Google_Service_Contacts_PhoneNumber extends Google_Collection
+{
+    protected $collection_key = 'phoneNumber';
+    protected $internal_gapi_mappings = array();
+    public $rel;
+    public $primary;
+    public $value;
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
+    }
+
+    /**
+     * @param mixed $primary
+     */
+    public function setPrimary($primary)
+    {
+        $this->primary = $primary;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+}
+
+class Google_Service_Contacts_StructuredAddress extends Google_Collection
+{
+    protected $collection_key = 'structuredAddress';
+    protected $internal_gapi_mappings = array();
+    public $rel;
+    public $primary;
+    protected $formattedAddressType = 'Google_Service_Contacts_Value';
+    protected $formattedAddressDataType = '';
+    protected $streetType = 'Google_Service_Contacts_Value';
+    protected $streetDataType = '';
+    protected $cityType = 'Google_Service_Contacts_Value';
+    protected $cityDataType = '';
+    protected $regionType = 'Google_Service_Contacts_Value';
+    protected $regionDataType = '';
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
+    }
+
+    /**
+     * @param mixed $primary
+     */
+    public function setPrimary($primary)
+    {
+        $this->primary = $primary;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedAddress()
+    {
+        return $this->formattedAddress;
+    }
+
+    /**
+     * @param string $formattedAddress
+     */
+    public function setFormattedAddress($formattedAddress)
+    {
+        $this->formattedAddress = $formattedAddress;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param string $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param string $region
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+    }
+}
+
+class Google_Service_Contacts_Relation extends Google_Collection
+{
+    protected $collection_key = 'relation';
+    protected $internal_gapi_mappings = array();
+    public $value;
+    public $rel;
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+}
+
+class Google_Service_Contacts_UserDefinedField extends Google_Collection
+{
+    protected $collection_key = 'userDefinedFields';
+    protected $internal_gapi_mappings = array();
+    public $key;
+    public $value;
+
+    /**
+     * @return mixed
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param mixed $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+}
+
+class Google_Service_Contacts_Website extends Google_Collection
+{
+    protected $collection_key = 'website';
+    protected $internal_gapi_mappings = array();
+    public $href;
+    public $primary;
+    public $rel;
+
+    /**
+     * @return mixed
+     */
+    public function getHref()
+    {
+        return $this->href;
+    }
+
+    /**
+     * @param mixed $href
+     */
+    public function setHref($href)
+    {
+        $this->href = $href;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
+    }
+
+    /**
+     * @param mixed $primary
+     */
+    public function setPrimary($primary)
+    {
+        $this->primary = $primary;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * @param mixed $rel
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+    }
+}
+
+class Google_Service_Contacts_GroupMembershipInfo extends Google_Collection
+{
+    protected $collection_key = 'groupMembershipInfo';
+    protected $internal_gapi_mappings = array();
+    public $deleted;
+    public $href;
+
+    /**
+     * @return mixed
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * @param mixed $deleted
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHref()
+    {
+        return $this->href;
+    }
+
+    /**
+     * @param mixed $href
+     */
+    public function setHref($href)
+    {
+        $this->href = $href;
+    }
+}
+
+class Google_Service_Contacts_ExtendedProperty extends Google_Collection
+{
+    protected $collection_key = 'extendedProperty';
+    protected $internal_gapi_mappings = array();
+    public $name;
+    public $value;
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+}
+
+class Google_Service_Contacts_Author extends Google_Collection
+{
+    protected $collection_key = 'author';
+    protected $internal_gapi_mappings = array();
+    protected $nameType = 'Google_Service_Contacts_Value';
+    protected $nameDataType = '';
+    protected $emailType = 'Google_Service_Contacts_Value';
+    protected $emailDataType = '';
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+}

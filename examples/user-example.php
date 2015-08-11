@@ -24,9 +24,9 @@ require_once realpath(dirname(__FILE__) . '/../src/Google/autoload.php');
   the redirect URI is to this page, e.g:
   http://localhost:8080/user-example.php
  ************************************************/
- $client_id = '<YOUR_CLIENT_ID>';
- $client_secret = '<YOUR_CLIENT_SECRET>';
- $redirect_uri = '<YOUR_REDIRECT_URI>';
+ $client_id = '1039026028052-2iup8280v8ibph5muhqk7lkuthccbkic.apps.googleusercontent.com';
+ $client_secret = '7PXylY6IpXlPpSREaXbuq3U-';
+ $redirect_uri = 'http://localhost:8080/oauth2callback.php';
 
 /************************************************
   Make an API request on behalf of a user. In
